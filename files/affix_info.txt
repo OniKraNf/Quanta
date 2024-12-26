@@ -1,0 +1,15 @@
+{
+  "result": [
+    {
+      "id": "explicit",
+      "label": "Explicit",
+      "entries": [
+        {
+          "id": "explicit.stat_55876295",
+          "text": "[LifeLeech|Leeches] #% of [Physical|Physical] Damage as Life",
+          "type": "explicit"
+        },
+      ]
+    }
+    ]
+}

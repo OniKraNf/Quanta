@@ -1,0 +1,136 @@
+Item Class: Bows
+Rarity: Rare
+Sol Wing
+Expert Composite Bow
+--------
+Physical Damage: 123-207 (augmented)
+Lightning Damage: 4-56 (augmented)
+Critical Hit Chance: 5.00%
+Attacks per Second: 1.20
+--------
+Requirements:
+Level: 72
+Dex: 193
+--------
+Sockets: S S 
+--------
+Item Level: 77
+--------
+22% increased Physical Damage (enchant)
+--------
+40% increased Physical Damage (rune)
+--------
+90% increased Physical Damage
+Adds 4 to 56 Lightning Damage
++87 to Accuracy Rating
++2 to Level of all Projectile Skills
++27 to Dexterity
+Gain 5 Life per Enemy Killed
+--------
+Corrupted
+
+
+
+Item Class: Body Armours
+Rarity: Rare
+Carrion Carapace
+Advanced Studded Vest
+--------
+Quality: +20% (augmented)
+Evasion Rating: 623 (augmented)
+--------
+Requirements:
+Level: 55
+Dex: 79 (augmented)
+--------
+Sockets: S S 
+--------
+Item Level: 61
+--------
++24% to Cold Resistance (rune)
+--------
+79% increased Evasion Rating
++11 to maximum Life
++46 to Spirit
+30% reduced Attribute Requirements
++22% to Fire Resistance
++15% to Cold Resistance
+--------
+Corrupted
+
+#% to [Resistances|Cold Resistance],
+
+
+{
+    "query": {
+        "status": {
+            "option": "online"
+        },
+        "type": "Ruby Ring",
+        "stats": [{
+            "type": "and",
+            "filters": [
+                {
+                    "id": "explicit.stat_4220027924",  // ID сопротивления молнии
+                    "value": {
+                        "min": 20,  // Минимальное значение сопротивления
+                        "max": 40   // Максимальное значение сопротивления (опционально)
+                    }
+                }
+            ]
+        }]
+    },
+    "sort": {
+        "price": "asc"
+    }
+}
+
+Item Class: Life Flasks
+Rarity: Magic
+Substantial Transcendent Life Flask of the Constant
+--------
+Quality: +9% (augmented)
+Recovers 1502 (augmented) Life over 4 Seconds
+Consumes 10 of 75 Charges on use
+Currently has 75 Charges
+--------
+Requirements:
+Level: 50
+--------
+Item Level: 51
+--------
+64% increased Amount Recovered
+24% increased Charges gained
+--------
+Right click to drink. Can only hold charges while in belt. Refill at Wells or by killing monsters.
+
+
+Item Class: Waystones
+Rarity: Normal
+Waystone (Tier 1)
+--------
+Waystone Tier: 1
+--------
+Item Level: 74
+--------
+Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
+
+
+Item Class: Waystones
+Rarity: Rare
+Rugged Compass
+Waystone (Tier 4)
+--------
+Waystone Tier: 4
+Waystone Drop Chance: +185% (augmented)
+--------
+Item Level: 72
+--------
+13% increased Quantity of Items found in this Area
+18% increased Rarity of Items found in this Area
+34% increased number of Monster Packs
+50% increased amount of Rare Chests
+Monsters deal 29% of Damage as Extra Lightning
++30% Monster Elemental Resistances
+--------
+Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
