@@ -7,9 +7,8 @@ class MainSanctumWidget(QtWidgets.QWidget):
         super().__init__()
     
         self.hello = ['Hello', 'KraNf']
-
         self.button = QtWidgets.QPushButton("Click me!")
-        self.text = QtWidgets.QLabel('Hello world!', alignment=QtCore.Qt.AlignCenter)
+        self.text = QtWidgets.QLabel('', alignment=QtCore.Qt.AlignCenter)
         self.layout = QtWidgets.QVBoxLayout(self)
         self.layout.addWidget(self.text)
         self.layout.addWidget(self.button)

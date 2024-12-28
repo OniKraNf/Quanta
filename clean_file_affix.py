@@ -1,6 +1,7 @@
 import re, json
 
 def clean_affix_file_text(input_file: str, output_file: str):
+    """Clean original affixes data, to work with them"""
     def clean_text(text: str) -> str:
         def replace_brackets(match):
             content = match.group(1)

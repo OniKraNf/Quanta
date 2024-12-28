@@ -1,5 +1,6 @@
 import re
 from models.affix import Affix
+from models.item import Item
 
 class ItemService:
     def __init__(self, affix_repository):
@@ -44,9 +45,11 @@ class ItemService:
         else:
             self.item_data['suffixes'] = []
 
-        #item = Item(self.item_data['class'], self.item_data['rarity'], self.item_data['name'])
+        item = Item(self.item_data['class'], self.item_data['rarity'], 
+                    self.item_data['name'], self.item_data['stats'], 
+                    self.item_data['item_level'], affixes=self.item_data['suffixes'])
             
-        return self.item_data
+        return item
 
     @staticmethod
     def normalize_affix_text(raw_affix: str) -> str:
@@ -56,10 +59,10 @@ class ItemService:
         normalized_text = re.sub(r'[+-]?[\d#.]+', '#', raw_affix).strip()
         return {'text': normalized_text, 'value': value}
     
-    def get_normalized_affixes(self, raw_affixes: list):
+    def get_normalized_affixes(self, raw_affixes: Item):
         """Find normalized affixes for item"""
         normalized_affixes = []
-        for raw_affix in raw_affixes.get('suffixes', []):
+        for raw_affix in raw_affixes:
             normalized_text = self.normalize_affix_text(raw_affix)
             affix_data = self.affix_repository.find_affix_by_text(normalized_text)
             affix_data['value'] = normalized_text['value']

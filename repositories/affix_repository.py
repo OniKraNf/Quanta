@@ -23,6 +23,3 @@ class AffixRepository:
                 filtered = filtered[filtered['value'] == normalized_text['value']]
 
         return filtered.iloc[0] if not filtered.empty else None
-
-# coldResistance = AffixRepository('files/affix_info.txt')
-# coldResistance.load_affixes()
