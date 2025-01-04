@@ -1,36 +1,3 @@
-Item Class: Bows
-Rarity: Rare
-Sol Wing
-Expert Composite Bow
---------
-Physical Damage: 123-207 (augmented)
-Lightning Damage: 4-56 (augmented)
-Critical Hit Chance: 5.00%
-Attacks per Second: 1.20
---------
-Requirements:
-Level: 72
-Dex: 193
---------
-Sockets: S S 
---------
-Item Level: 77
---------
-22% increased Physical Damage (enchant)
---------
-40% increased Physical Damage (rune)
---------
-90% increased Physical Damage
-Adds 4 to 56 Lightning Damage
-+87 to Accuracy Rating
-+2 to Level of all Projectile Skills
-+27 to Dexterity
-Gain 5 Life per Enemy Killed
---------
-Corrupted
-
-
-
 Item Class: Body Armours
 Rarity: Rare
 Carrion Carapace
@@ -57,6 +24,8 @@ Item Level: 61
 +15% to Cold Resistance
 --------
 Corrupted
+
+
 
 #% to [Resistances|Cold Resistance],
 

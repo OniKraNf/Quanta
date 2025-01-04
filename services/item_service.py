@@ -54,7 +54,7 @@ class ItemService:
     @staticmethod
     def normalize_affix_text(raw_affix: str) -> str:
         """Normalize affix text"""
-        item_val = re.search('\d+', raw_affix)
+        item_val = re.search(r'\d+', raw_affix)
         value = int(item_val.group())
         normalized_text = re.sub(r'[+-]?[\d#.]+', '#', raw_affix).strip()
         return {'text': normalized_text, 'value': value}
@@ -65,8 +65,8 @@ class ItemService:
         for raw_affix in raw_affixes:
             normalized_text = self.normalize_affix_text(raw_affix)
             affix_data = self.affix_repository.find_affix_by_text(normalized_text)
-            affix_data['value'] = normalized_text['value']
-            if not affix_data.empty:
+            if affix_data is not None and not affix_data.empty :
+                affix_data['value'] = normalized_text['value']
                 affix = Affix(affix_data['id'], affix_data['text'], affix_data['type'], affix_data.get('value'))
                 normalized_affixes.append(affix)
             else:

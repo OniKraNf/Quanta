@@ -21,36 +21,3 @@ class PriceService:
         ]
 
         return statistics.mean(prices) if prices else None
-    
-    def create_query(self, item_data: Item):
-        
-        query = {
-            "query": {
-                "status": {
-                    "option": "online"
-                },
-                "type": item_data.name,
-                "stats": [{
-                    "type": "and",
-                    "filters": [{
-                        "id": affix.id,
-                        "value": {"min": affix.value}
-                    }
-                    for affix in item_data.affixes if affix.value is not None
-                    ]
-                }],
-                "filters": {
-                    "misc_filters": {
-                        "filters": {
-                            "ilvl": {"min": int(item_data.item_level)}
-                        }
-                    }
-                }
-            },
-            "sort": {
-                "price": "asc"
-            }
-        }
-
-        self.query = query
-        return query
