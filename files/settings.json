@@ -1,0 +1,13 @@
+{
+    "os": {
+        "Linux": {
+            "current_bind": "ctrl + d"
+        },
+        "Windows": {
+            "current_bind": "ctrl + d"
+        },
+        "Darwin": {
+            "current_bind": "command + d"
+        }
+    }
+}
