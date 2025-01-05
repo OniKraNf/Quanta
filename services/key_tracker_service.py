@@ -4,6 +4,7 @@ class KeyTrackerService:
     def __init__(self):
         self.listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
         self.pressed_keys = set()
+        self.is_hotkey_pressed = False
 
     def on_press(self, key):
         try:
@@ -11,7 +12,6 @@ class KeyTrackerService:
                 self.pressed_keys.add(key.char)
             else:
                 self.pressed_keys.add(str(key))
-            # print(f'Key pressed: {key}, current keys {self.pressed_keys}')
         except AttributeError:
             self.pressed_keys.add(str(key))
 
@@ -21,7 +21,6 @@ class KeyTrackerService:
                 self.pressed_keys.discard(key.char)
             else:
                 self.pressed_keys.discard(str(key))
-            # print(f'Key released: {key}, current keys {self.pressed_keys}')
         except AttributeError:
             self.pressed_keys.discard(str(key))
 
