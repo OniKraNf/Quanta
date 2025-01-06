@@ -2,6 +2,8 @@ import tkinter as tk
 import json
 from tkinter import ttk
 from models.item import Item
+from services.key_tracker_service import KeyTrackerService
+import threading
 
 import sv_ttk
 
@@ -9,14 +11,16 @@ class QuantaWindow:
     
     settings_file = 'files/settings.json'
 
-    def __init__(self, root, height, width, os_name):
+    def __init__(self, root, height, width, os_name, tracker: KeyTrackerService):
         self.height = height
         self.width = width
+
+        self.tracker = tracker
 
         self.os_name = os_name
 
         self.settings = self.load_settings()
-        self.current_bind = self.settings['os'][self.os_name]['current_bind']
+        self.current_bind = self.settings['os'][self.os_name]['current_bind'].split('+')
 
         self.root = root
         self.root.title = 'Quanta'
@@ -39,24 +43,17 @@ class QuantaWindow:
         self.create_main_page()
         self.create_settings_page()
 
-
-    # def return_pressed(self, event):
-    #     self.app.process_clipboard_and_show('s', self)
-
     def run(self):
         self.root.geometry(f'{self.width}x{self.height}+{self.center_x}+{self.center_y}')
 
         search_btn = ttk.Button(self.root, text='search', command=self.button_search)
         search_btn.pack()
 
-        # self.root.bind('<Control-KeyPress-d>', self.return_pressed)
-        # self.root.bind('<Control-KeyPress-D>', self.return_pressed)
-        
         if self.os_name == 'Linux':
             self.root.wait_visibility(self.root)
             self.root.wm_attributes('-alpha',0.95)
         else:
-            self.root.attributes('-alpha', 0.5)
+            self.root.attributes('-alpha', 0.95)
 
         sv_ttk.set_theme('dark')
         self.root.mainloop()
@@ -83,13 +80,31 @@ class QuantaWindow:
         self.right_frame.pack(side='right', fill='both', expand=True)
 
     def create_settings_page(self):
-        bind_label = ttk.Label(self.settings_tab, text='Current bind: ').pack(anchor='n', padx=50, side='left')
-        
-        bind_entry = ttk.Entry(self.settings_tab)
-        bind_entry.pack(anchor='n', side='left')
+        bind_frame = ttk.Labelframe(self.settings_tab)
+        bind_label = ttk.Label(bind_frame, text='Current bind: ')
+        bind_field = ttk.Button(bind_frame, text=f'{[bind for bind in self.current_bind]}')
 
+        def activate_binding():
+            if self.tracker.pressed_keys is not None:
+                self.tracker.pressed_keys.clear()  
+
+            def wait_for_key():
+                while not self.tracker.pressed_keys:
+                    pass
+                
+                pressed_key = next(iter(self.tracker.pressed_keys))
+                print("Pressed key: ", pressed_key)
+                self.current_bind = pressed_key
+                bind_field.config(text=f"{pressed_key}")
+            
+            threading.Thread(target=wait_for_key, daemon=True).start()
+
+        bind_field.config(command=activate_binding)
+        bind_label.pack(expand=True)
+        bind_field.pack(expand=True)
+        bind_frame.pack(expand=True, anchor='n', padx=50, pady=50, side='left', ipadx=50, ipady=50)
         def save_bind():
-            new_bind = bind_entry.get()
+            new_bind = bind_field.get()
             if new_bind:
                 self.settings['os'][self.os_name]['current_bind'] = new_bind
                 self.save_settings(self.settings)
