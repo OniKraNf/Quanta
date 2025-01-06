@@ -9,8 +9,10 @@ class KeyTrackerService:
     def on_press(self, key):
         try:
             if hasattr(key, 'char') and key.char is not None:
+                print(f'Pressed: {key}')
                 self.pressed_keys.add(key.char)
             else:
+                print(f'Pressed: {key}')
                 self.pressed_keys.add(str(key))
         except AttributeError:
             self.pressed_keys.add(str(key))
@@ -18,8 +20,10 @@ class KeyTrackerService:
     def on_release(self, key):
         try:
             if hasattr(key, 'char') and key.char is not None:
+                print(f'Released: {key}')
                 self.pressed_keys.discard(key.char)
             else:
+                print(f'Released: {key}')
                 self.pressed_keys.discard(str(key))
         except AttributeError:
             self.pressed_keys.discard(str(key))

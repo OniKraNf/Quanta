@@ -15,6 +15,19 @@ from tkinter import ttk
 
 price_bind = 'ctrl+d'
 
+# key_mapping = {
+#     'Linux': {
+#         "command": ""
+#         "d": ""
+#     },
+#     'Darwin': {
+
+#     },
+#     'Windows': {
+
+#     }
+# }
+
 class App:
     def initialize_services(self, affix_file_path): 
         affix_repository = AffixRepository(affix_file_path)
@@ -65,12 +78,13 @@ if __name__ == '__main__':
     app = App()
     root = tk.Tk()
 
-    quanta = QuantaWindow(root=root, width=300, height= 00, os_name=os_name)
     app.initialize_services('files/cleared_affix.txt')
 
     tracker_thread = threading.Thread(target=tracker.start)
     tracker_thread.daemon = True
     tracker_thread.start()
+
+    quanta = QuantaWindow(root=root, width=800, height=600, os_name=os_name, tracker=tracker)
 
     hotkey_thread = threading.Thread(target=hotkey_listener, args=(app, tracker, price_bind, quanta))
     hotkey_thread.daemon = True
